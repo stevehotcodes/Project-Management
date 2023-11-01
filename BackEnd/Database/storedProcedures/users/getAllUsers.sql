@@ -1,0 +1,7 @@
+CREATE OR ALTER PROCEDURE getAllUsers
+AS
+BEGIN
+
+SELECT  fullName , email FROM users
+
+END
