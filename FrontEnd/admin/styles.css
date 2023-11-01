@@ -123,8 +123,8 @@ svg{
     justify-content: center;
 }
 .project-card{
-    width:21.375rem;
-    height:11.375rem;
+    width:24.375rem;
+    height:12.375rem;
     display: flex;
     flex-direction: column;
     box-shadow: 5px 5px  10px gray;

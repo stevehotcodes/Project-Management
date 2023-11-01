@@ -4,6 +4,7 @@ CREATE TABLE projects (
     projectDescription VARCHAR(MAX) NOT NULL,
     createdAt DATETIME  DEFAULT GETDATE(),
     projectDueDate DATE NOT NULL,
-    projectStatus VARCHAR(MAX) DEFAULT 'unassigned' CHECK (projectStatus IN ('unassigned', 'in progress', 'completed'));
-
+    projectStatus VARCHAR(MAX) DEFAULT 'unassigned' CHECK (projectStatus IN ('unassigned','assigned', 'in progress', 'completed'));
+    projectComments VARCHAR(MAX),
+    userID VARCHAR (MAX)  FOREIGN KEY REFERENCES users(id)
 )
