@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+!<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="./styles.css">
-    <title>Document</title>
+    <title>Userlist</title>
 </head>
 <body>
     <div class="page-wrapper">
@@ -30,16 +30,15 @@
                 <div class="all-projects"  ><a href="./index.html">All Project</a></div>
                 <div class="assign " ><a href="./assign.html">Assign</a></div>
                 <div class="completed "><a  href="./completed.html">Completed </a></div>
-                <div class="users" ><a href="./userlist.html">Users</a></div>
-                <div class="users active"><a  href="#">Due</a></div>
+                <div class="users active" ><a href="#">Users</a></div>
+                <div class="users"><a  href="./due.html">Due</a></div>
             </div>
             <div class="button-wrapper" title="add-task" class="openModalBtn">
                 <svg class="add-btn" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm80 224h-64v64a16 16 0 01-32 0v-64h-64a16 16 0 010-32h64v-64a16 16 0 0132 0v64h64a16 16 0 010 32z"/></svg>
-                <!--modal-->
                 <div class="myModal" class="modal">
                     <div class="modal-content">
-                        <span class="close" id="openModalBtn">&times;</span>
-                        <span class="close" class="closeModalBtn">&times;</span>
+                        <!-- <span class="close" id="openModalBtn">&times;</span> -->
+                        <span class="close" id="closeModalBtn">&times;</span>
                         <h2>Add New Project</h2>
                         <form class="modal-form">
                             <!-- Your form elements go here -->
@@ -55,83 +54,75 @@
         </div>
 
         <div class="main-container">
-            <div class="page-title">Due</div>
+            <div class="page-title">User List</div>
             <div class="project-cards-wrapper">
+              
                 <div class="project-card">
-                    <div><span>Project id:</span></div>
-                    <div><span>Date due:</span></div>
-                    <div><span>Assign to:</span></div>
-                    <div><span>Status:</span></div>
+                    <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M258.9 48C141.92 46.42 46.42 141.92 48 258.9c1.56 112.19 92.91 203.54 205.1 205.1 117 1.6 212.48-93.9 210.88-210.88C462.44 140.91 371.09 49.56 258.9 48zm126.42 327.25a4 4 0 01-6.14-.32 124.27 124.27 0 00-32.35-29.59C321.37 329 289.11 320 256 320s-65.37 9-90.83 25.34a124.24 124.24 0 00-32.35 29.58 4 4 0 01-6.14.32A175.32 175.32 0 0180 259c-1.63-97.31 78.22-178.76 175.57-179S432 158.81 432 256a175.32 175.32 0 01-46.68 119.25z"/><path d="M256 144c-19.72 0-37.55 7.39-50.22 20.82s-19 32-17.57 51.93C191.11 256 221.52 288 256 288s64.83-32 67.79-71.24c1.48-19.74-4.8-38.14-17.68-51.82C293.39 151.44 275.59 144 256 144z"/></svg></div>
+
+                    <div class="user-list">
+                        <div><span>Name :</span></div>
+                        <div><span>Completed:</span></div>
+                        <div><span>Assigned :</span></div>
+                        <div><span>Project No:</span></div>
+                    </div>
+                
                 </div>
 
+                
                 <div class="project-card">
-                    <div><span>Project id:</span></div>
-                    <div><span>Date due:</span></div>
-                    <div><span>Assign to:</span></div>
-                    <div><span>Status:</span></div>
+                    <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M258.9 48C141.92 46.42 46.42 141.92 48 258.9c1.56 112.19 92.91 203.54 205.1 205.1 117 1.6 212.48-93.9 210.88-210.88C462.44 140.91 371.09 49.56 258.9 48zm126.42 327.25a4 4 0 01-6.14-.32 124.27 124.27 0 00-32.35-29.59C321.37 329 289.11 320 256 320s-65.37 9-90.83 25.34a124.24 124.24 0 00-32.35 29.58 4 4 0 01-6.14.32A175.32 175.32 0 0180 259c-1.63-97.31 78.22-178.76 175.57-179S432 158.81 432 256a175.32 175.32 0 01-46.68 119.25z"/><path d="M256 144c-19.72 0-37.55 7.39-50.22 20.82s-19 32-17.57 51.93C191.11 256 221.52 288 256 288s64.83-32 67.79-71.24c1.48-19.74-4.8-38.14-17.68-51.82C293.39 151.44 275.59 144 256 144z"/></svg></div>
+
+                    <div class="user-list">
+                        <div><span>Name :</span></div>
+                        <div><span>Completed:</span></div>
+                        <div><span>Assigned :</span></div>
+                        <div><span>Project No:</span></div>
+                    </div>
+                
                 </div>
 
+                
                 <div class="project-card">
-                    <div><span>Project id:</span></div>
-                    <div><span>Date due:</span></div>
-                    <div><span>Assign to:</span></div>
-                    <div><span>Status:</span></div>
+                    <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M258.9 48C141.92 46.42 46.42 141.92 48 258.9c1.56 112.19 92.91 203.54 205.1 205.1 117 1.6 212.48-93.9 210.88-210.88C462.44 140.91 371.09 49.56 258.9 48zm126.42 327.25a4 4 0 01-6.14-.32 124.27 124.27 0 00-32.35-29.59C321.37 329 289.11 320 256 320s-65.37 9-90.83 25.34a124.24 124.24 0 00-32.35 29.58 4 4 0 01-6.14.32A175.32 175.32 0 0180 259c-1.63-97.31 78.22-178.76 175.57-179S432 158.81 432 256a175.32 175.32 0 01-46.68 119.25z"/><path d="M256 144c-19.72 0-37.55 7.39-50.22 20.82s-19 32-17.57 51.93C191.11 256 221.52 288 256 288s64.83-32 67.79-71.24c1.48-19.74-4.8-38.14-17.68-51.82C293.39 151.44 275.59 144 256 144z"/></svg></div>
+
+                    <div class="user-list">
+                        <div><span>Name :</span></div>
+                        <div><span>Completed:</span></div>
+                        <div><span>Assigned :</span></div>
+                        <div><span>Project No:</span></div>
+                    </div>
+                
                 </div>
+                
                 <div class="project-card">
-                    <div><span>Project id:</span></div>
-                    <div><span>Date due:</span></div>
-                    <div><span>Assign to:</span></div>
-                    <div><span>Status:</span></div>
+                    <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M258.9 48C141.92 46.42 46.42 141.92 48 258.9c1.56 112.19 92.91 203.54 205.1 205.1 117 1.6 212.48-93.9 210.88-210.88C462.44 140.91 371.09 49.56 258.9 48zm126.42 327.25a4 4 0 01-6.14-.32 124.27 124.27 0 00-32.35-29.59C321.37 329 289.11 320 256 320s-65.37 9-90.83 25.34a124.24 124.24 0 00-32.35 29.58 4 4 0 01-6.14.32A175.32 175.32 0 0180 259c-1.63-97.31 78.22-178.76 175.57-179S432 158.81 432 256a175.32 175.32 0 01-46.68 119.25z"/><path d="M256 144c-19.72 0-37.55 7.39-50.22 20.82s-19 32-17.57 51.93C191.11 256 221.52 288 256 288s64.83-32 67.79-71.24c1.48-19.74-4.8-38.14-17.68-51.82C293.39 151.44 275.59 144 256 144z"/></svg></div>
+
+                    <div class="user-list">
+                        <div><span>Name :</span></div>
+                        <div><span>Completed:</span></div>
+                        <div><span>Assigned :</span></div>
+                        <div><span>Project No:</span></div>
+                    </div>
+                
                 </div>
+                
                 <div class="project-card">
-                    <div><span>Project id:</span></div>
-                    <div><span>Date due:</span></div>
-                    <div><span>Assign to:</span></div>
-                    <div><span>Status:</span></div>
-                </div>
-                <div class="project-card">
-                    <div><span>Project id:</span></div>
-                    <div><span>Date due:</span></div>
-                    <div><span>Assign to:</span></div>
-                    <div><span>Status:</span></div>
-                </div>
-                <div class="project-card">
-                    <div><span>Project id:</span></div>
-                    <div><span>Date due:</span></div>
-                    <div><span>Assign to:</span></div>
-                    <div><span>Status:</span></div>
-                </div>
-                <div class="project-card">
-                    <div><span>Project id:</span></div>
-                    <div><span>Date due:</span></div>
-                    <div><span>Assign to:</span></div>
-                    <div><span>Status:</span></div>
-                </div>
-                <div class="project-card">
-                    <div><span>Project id:</span></div>
-                    <div><span>Date due:</span></div>
-                    <div><span>Assign to:</span></div>
-                    <div><span>Status:</span></div>
+                    <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M258.9 48C141.92 46.42 46.42 141.92 48 258.9c1.56 112.19 92.91 203.54 205.1 205.1 117 1.6 212.48-93.9 210.88-210.88C462.44 140.91 371.09 49.56 258.9 48zm126.42 327.25a4 4 0 01-6.14-.32 124.27 124.27 0 00-32.35-29.59C321.37 329 289.11 320 256 320s-65.37 9-90.83 25.34a124.24 124.24 0 00-32.35 29.58 4 4 0 01-6.14.32A175.32 175.32 0 0180 259c-1.63-97.31 78.22-178.76 175.57-179S432 158.81 432 256a175.32 175.32 0 01-46.68 119.25z"/><path d="M256 144c-19.72 0-37.55 7.39-50.22 20.82s-19 32-17.57 51.93C191.11 256 221.52 288 256 288s64.83-32 67.79-71.24c1.48-19.74-4.8-38.14-17.68-51.82C293.39 151.44 275.59 144 256 144z"/></svg></div>
+
+                    <div class="user-list">
+                        <div><span>Name :</span></div>
+                        <div><span>Completed:</span></div>
+                        <div><span>Assigned :</span></div>
+                        <div><span>Project No:</span></div>
+                    </div>
+                
                 </div>
 
-                <div class="project-card">
-                    <div><span>Project id:</span></div>
-                    <div><span>Date due:</span></div>
-                    <div><span>Assign to:</span></div>
-                    <div><span>Status:</span></div>
-                </div>
-                <div class="project-card">
-                    <div><span>Project id:</span></div>
-                    <div><span>Date due:</span></div>
-                    <div><span>Assign to:</span></div>
-                    <div><span>Status:</span></div>
-                </div>
-                <div class="project-card">
-                    <div><span>Project id:</span></div>
-                    <div><span>Date due:</span></div>
-                    <div><span>Assign to:</span></div>
-                    <div><span>Status:</span></div>
-                </div>
+            
+
+               
+             
 
             </div>
         </div>
@@ -147,8 +138,9 @@
             </div>
         </footer>
 
+ 
 
 
-<script src="./dist/admin.js"></script>
 </div>
 </body>
+<script src="./dist/admin.js"></script>
