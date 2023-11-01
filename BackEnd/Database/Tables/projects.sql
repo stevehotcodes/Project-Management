@@ -1,3 +1,4 @@
+--USE ProjectManagementDB---
 CREATE TABLE projects (
     id  VARCHAR(MAX) PRIMARY KEY  NOT NULL,
     projectTitle VARCHAR (MAX)  NOT NULL,
@@ -8,3 +9,8 @@ CREATE TABLE projects (
     projectComments VARCHAR(MAX),
     userID VARCHAR (MAX)  FOREIGN KEY REFERENCES users(id)
 )
+
+--SELECT * FROM projects--
+--DROP TABLE projects---
+
+
