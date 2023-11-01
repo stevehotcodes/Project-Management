@@ -142,7 +142,7 @@ footer{
     justify-content: space-around;
     align-items: center;
 }
-.modal {
+.myModal {
     display: none;
     position: fixed;
     top: 0;

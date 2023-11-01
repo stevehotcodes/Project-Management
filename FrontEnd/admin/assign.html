@@ -16,11 +16,11 @@
             <div class="actions-wrapper">
                 <h3 class="greetings">Hello,<span>Admin</span></h3>
                 
-                <svg id="search-icon" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="gray" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="gray" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"/></svg>
+                <svg id="search-icon" xmlns="http://www.w3.org/2000/svg" title="search" class="ionicon" viewBox="0 0 512 512"><path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="gray" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="gray" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"/></svg>
 
-                <svg id="notification-bell" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M427.68 351.43C402 320 383.87 304 383.87 217.35 383.87 138 343.35 109.73 310 96c-4.43-1.82-8.6-6-9.95-10.55C294.2 65.54 277.8 48 256 48s-38.21 17.55-44 37.47c-1.35 4.6-5.52 8.71-9.95 10.53-33.39 13.75-73.87 41.92-73.87 121.35C128.13 304 110 320 84.32 351.43 73.68 364.45 83 384 101.61 384h308.88c18.51 0 27.77-19.61 17.19-32.57zM320 384v16a64 64 0 01-128 0v-16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+                <svg id="notification-bell" xmlns="http://www.w3.org/2000/svg"  title="notification" class="ionicon" viewBox="0 0 512 512"><path d="M427.68 351.43C402 320 383.87 304 383.87 217.35 383.87 138 343.35 109.73 310 96c-4.43-1.82-8.6-6-9.95-10.55C294.2 65.54 277.8 48 256 48s-38.21 17.55-44 37.47c-1.35 4.6-5.52 8.71-9.95 10.53-33.39 13.75-73.87 41.92-73.87 121.35C128.13 304 110 320 84.32 351.43 73.68 364.45 83 384 101.61 384h308.88c18.51 0 27.77-19.61 17.19-32.57zM320 384v16a64 64 0 01-128 0v-16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
 
-                <svg id="log-out-btn" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M304 336v40a40 40 0 01-40 40H104a40 40 0 01-40-40V136a40 40 0 0140-40h152c22.09 0 48 17.91 48 40v40M368 336l80-80-80-80M176 256h256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+                <svg id="log-out-btn" xmlns="http://www.w3.org/2000/svg" class="ionicon" title="logout" viewBox="0 0 512 512"><path d="M304 336v40a40 40 0 01-40 40H104a40 40 0 01-40-40V136a40 40 0 0140-40h152c22.09 0 48 17.91 48 40v40M368 336l80-80-80-80M176 256h256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
             </div>
             
         </div>
@@ -28,18 +28,17 @@
         <div class="middle-nav-bar-add-button-wrapper">
             <div class="middle-nav-bar">
                 <div class="all-projects"  ><a href="./index.html">All Project</a></div>
-                <div class="assign " ><a href="./assign.html">Assign</a></div>
+                <div class="assign active" ><a href="#">Assign</a></div>
                 <div class="completed "><a  href="./completed.html">Completed </a></div>
                 <div class="users" ><a href="./userlist.html">Users</a></div>
-                <div class="users active"><a  href="#">Due</a></div>
+                <div class="users"><a  href="./due.html">Due</a></div>
             </div>
             <div class="button-wrapper" title="add-task" class="openModalBtn">
                 <svg class="add-btn" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm80 224h-64v64a16 16 0 01-32 0v-64h-64a16 16 0 010-32h64v-64a16 16 0 0132 0v64h64a16 16 0 010 32z"/></svg>
-                <!--modal-->
                 <div class="myModal" class="modal">
                     <div class="modal-content">
                         <span class="close" id="openModalBtn">&times;</span>
-                        <span class="close" class="closeModalBtn">&times;</span>
+                        <span class="close" id="closeModalBtn">&times;</span>
                         <h2>Add New Project</h2>
                         <form class="modal-form">
                             <!-- Your form elements go here -->
@@ -55,7 +54,7 @@
         </div>
 
         <div class="main-container">
-            <div class="page-title">Due</div>
+            <div class="page-title">Assign Project </div>
             <div class="project-cards-wrapper">
                 <div class="project-card">
                     <div><span>Project id:</span></div>
@@ -147,8 +146,9 @@
             </div>
         </footer>
 
+ 
 
 
-<script src="./dist/admin.js"></script>
 </div>
+<script src="./dist/admin.js"></script>
 </body>
