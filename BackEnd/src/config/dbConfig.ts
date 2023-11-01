@@ -1,6 +1,6 @@
-import * as dotenv from 'dotenv';
+import * as dotenv from 'dotenv'
 
-dotenv.config();
+dotenv.config({});
 
 
 
@@ -19,6 +19,5 @@ export const dbConfig ={
             trustCertificate: true
       }
 }
-export function checkEnv(){
-    console.log("env user value",process.env.DB_USER);
-}
+
+

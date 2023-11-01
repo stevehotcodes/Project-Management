@@ -1,9 +1,9 @@
 CREATE  TABLE users (
-    id  VARCHAR (MAX)  PRIMARY KEY NOT NULL UNIQUE,
-    fullname VARCHAR (MAX) NOT NULL ,
-    email VARCHAR(MAX) NOT NULL UNIQUE,
-    password VARCHAR (MAX) NOT NULL UNIQUE,
-    role VARCHAR(MAX) NOT NULL DEFAULT 'users',
+    id  VARCHAR (255)  PRIMARY KEY NOT NULL,
+    fullname VARCHAR (255) NOT NULL ,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR (255) NOT NULL ,
+    role VARCHAR(255) NOT NULL DEFAULT 'employees',
     dateRegistered DATETIME DEFAULT GETDATE()
 )
 

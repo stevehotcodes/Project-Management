@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const projectControllers_1 = require("../controllers/projectControllers");
+const projectRoutes = (0, express_1.Router)();
+projectRoutes.get('/all', projectControllers_1.getAllProjects);
+projectRoutes.post('/new', projectControllers_1.addNewProject);
+projectRoutes.get('/unassigned', projectControllers_1.getUnassignedProjects);
+projectRoutes.get('/:userID', projectControllers_1.getProjectByUserId);
+exports.default = projectRoutes;
