@@ -1,5 +1,5 @@
 CREATE OR ALTER PROCEDURE getAllProjects
 AS
 BEGIN
-SELECT * FROM  projects
+SELECT * FROM  projects 
 END

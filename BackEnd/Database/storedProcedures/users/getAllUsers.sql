@@ -2,6 +2,6 @@ CREATE OR ALTER PROCEDURE getAllUsers
 AS
 BEGIN
 
-SELECT  fullName , email FROM users
+SELECT id, fullName, email FROM users WHERE role='employees'
 
 END
