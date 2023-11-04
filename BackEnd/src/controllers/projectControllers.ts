@@ -1,6 +1,8 @@
 import { Request,Response, request } from "express";
 import DatabaseHelper from "../helpers/databaseConnectionHelper";
 import  {v4 as uid }from 'uuid'
+import { ILoginUser, IProject } from "../Types";
+import { ExtendedUserRequest } from "../middlewares/verifyToken";
 
 
 const dbInstance= DatabaseHelper.getInstance()
@@ -14,10 +16,7 @@ export const getAllProjects=async(req:Request,res:Response)=>{
     
   } catch (error) {
     return res.status(404).json({message:"projects were not  found",error})
-
-    
   }
-
 
 }
 
@@ -64,18 +63,20 @@ export const getUnassignedProjects=async(req:Request,res:Response)=>{
 
     try {
       let projects=(await dbInstance.exec('getUnassignedProjects')).recordset;
+      if(!projects){return res.status(404).json({"message":"no projects founnd"})}
       return res.status(200).json(projects); 
+      
+
       
     } catch (error) {
       return res.status(404).json({message:"projects were not  found",error})
         
     }
   
-  
   }
 
   export const getProjectByUserId=async(req:Request,res:Response)=>{
-    
+
     try
      {
         let {id}=req.params
@@ -83,15 +84,104 @@ export const getUnassignedProjects=async(req:Request,res:Response)=>{
       return res.status(200).json(projects); 
       
     } catch (error:any) {
-      return res.status(404).json({message:error.message})
+       return res.status(404).json({message:error.message})
         
     }
-  
-  
+    
   }
   
+  export const updateProjectToAssigned=async(req:Request,res:Response)=>{
+        try {
+            let {id,userID}=req.params;
+            await dbInstance.exec('updateProjectStatusToAssigned',{id,userID})
+
+            return res.status(200).json("task assigned successfully") 
+          
+        } catch (error) {
+          console.log(error)
+           return res.status(500).json(error)
+        }
+  }
+
+  export const updateProjectToInProgress=async(req:Request,res:Response)=>{
+      try{
+          
+        let {id}=req.params
+        await dbInstance.exec('updateProjectStatusToInProgress',{id});
+
+        return res.status(200).json("task updated to in progress");
 
 
-  
-//   export const updateProjectToStart
+      }
+      catch(error:any){
+        console.log(error);
+        return res.status(500).json({"error in updating the task to in progress":error.message})
 
+      }
+  }
+
+  export const updateProjectToComplete=async(req:ExtendedUserRequest,res:Response)=>{
+    try{
+        
+      let {id}=req.params;
+      let userID=req.info?.id as string
+      console.log(userID)
+    
+      
+      console.log(userID)
+
+      await dbInstance.exec('updateProjectStatusToComplete',{id,userID:userID});
+
+      return res.status(200).json("project marked to complete");
+
+
+    }
+    catch(error:any){
+      console.log(error);
+      return res.status(500).json({"error in updating the task to complete":error.message})
+
+    }
+}
+
+
+
+export const addProjectComment=async(req:Request,res:Response)=>{
+    try {
+        let{id}=req.params;
+        let{projectComments}=req.body
+
+        let result =await dbInstance.exec('addProjectComments',{id,projectComments});
+        console.log(result);
+
+        return res.status(200).json({message:"project comments were added successfully"})
+
+
+   } catch (error:any) {
+        return res.status(500).json({error:error.message})
+      
+    }
+}
+
+//these are ment for assigning users tasks
+//first fetch project by id
+//prepopulate the data fetched to the form 
+//fetch unassigned users 
+//create an object that will submit the user assigned task to database 
+
+export const getProjectById=async (req:Request,res:Response)=>{
+  try {
+
+      let{id}=req.params;
+      let project:IProject[]=(await dbInstance.exec('getProjectById',{id})).recordset;
+      console.log(project)
+      if(!project){return res.status(404).json({message:"project not found"})}
+      else{
+        return res.status(200).json(project)
+      }
+    
+  } catch (error:any) {
+      return res.status(500).json({"error in fetching project details":error.message})
+    
+  }
+
+}

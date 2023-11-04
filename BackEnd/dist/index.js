@@ -34,6 +34,9 @@ app.use((0, express_1.json)());
 const port = 3000;
 app.use('/user', userRoutes_1.default);
 app.use('/projects', projectRoutes_1.default);
+app.get('/', () => {
+    console.log("perez changes");
+});
 app.listen(port, () => {
     console.log("hello I am connected to the server................running on this port", port);
 });

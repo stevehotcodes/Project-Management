@@ -6,6 +6,7 @@ CREATE  TABLE users (
     role VARCHAR(255) NOT NULL DEFAULT 'employees',
     dateRegistered DATETIME DEFAULT GETDATE(),
     isAssigned INT DEFAULT 0
+    
 )
 
 

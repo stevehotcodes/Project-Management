@@ -1,12 +1,17 @@
 import { Router } from "express";
-import { getAllUser, registerNewUser } from "../controllers/userControllers";
+import { getAllUser, getUnassignedUsers, loginUser, registerNewUser } from "../controllers/userControllers";
+import { verifyToken } from "../middlewares/verifyToken";
 
 
 const userRouter=Router()
 
 
-userRouter.post('/new',registerNewUser)
-userRouter.get('/all',getAllUser)
+userRouter.post('/new',registerNewUser);
+userRouter.get('/unassigned',getUnassignedUsers)
+userRouter.get('/all',getAllUser);
+userRouter.patch('/login',loginUser);
+
+
 
 
 

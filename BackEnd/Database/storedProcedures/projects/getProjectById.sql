@@ -1,0 +1,5 @@
+CREATE OR ALTER PROCEDURE getProjectsByUserId(@id VARCHAR (255))
+AS
+BEGIN
+    SELECT * projects WHERE id=@id
+END
