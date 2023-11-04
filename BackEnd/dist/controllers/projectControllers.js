@@ -27,30 +27,36 @@ const getAllProjects = (req, res) => __awaiter(void 0, void 0, void 0, function*
 });
 exports.getAllProjects = getAllProjects;
 const addNewProject = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
-        let id = (0, uuid_1.v4)();
-        let { projectTitle, projectDescription, projectDueDate } = req.body;
-        const parts = projectDueDate.split('/');
-        if (parts.length === 3) {
-            projectDueDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+        if (((_a = req.info) === null || _a === void 0 ? void 0 : _a.role) === 'admin') {
+            let id = (0, uuid_1.v4)();
+            let { projectTitle, projectDescription, projectDueDate } = req.body;
+            const parts = projectDueDate.split('/');
+            if (parts.length === 3) {
+                projectDueDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+            }
+            else {
+                return res.status(400).json({ message: "Invalid date format" });
+            }
+            let parsedDate = new Date(projectDueDate);
+            projectDueDate = parsedDate;
+            if (isNaN(projectDueDate)) {
+                return res.status(400).json({ message: "Invalid date format" });
+            }
+            console.log(parsedDate);
+            let result = yield dbInstance.exec('addNewProject', {
+                id,
+                projectTitle,
+                projectDescription,
+                projectDueDate,
+            });
+            console.log(result);
+            return res.status(201).json({ message: `${projectTitle} created successfully` });
         }
         else {
-            return res.status(400).json({ message: "Invalid date format" });
+            return res.status(401).json({ message: "you do not have privileges" });
         }
-        let parsedDate = new Date(projectDueDate);
-        projectDueDate = parsedDate;
-        if (isNaN(projectDueDate)) {
-            return res.status(400).json({ message: "Invalid date format" });
-        }
-        console.log(parsedDate);
-        let result = yield dbInstance.exec('addNewProject', {
-            id,
-            projectTitle,
-            projectDescription,
-            projectDueDate,
-        });
-        console.log(result);
-        return res.status(201).json({ message: `${projectTitle} created successfully` });
     }
     catch (error) {
         return res.status(500).json({ message: error.message });
@@ -59,12 +65,18 @@ const addNewProject = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.addNewProject = addNewProject;
 //fetch project by status 
 const getUnassignedProjects = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _b;
     try {
-        let projects = (yield dbInstance.exec('getUnassignedProjects')).recordset;
-        if (!projects) {
-            return res.status(404).json({ "message": "no projects founnd" });
+        if (((_b = req.info) === null || _b === void 0 ? void 0 : _b.role) === 'admin') {
+            let projects = (yield dbInstance.exec('getUnassignedProjects')).recordset;
+            if (!projects) {
+                return res.status(404).json({ message: "no projects founnd" });
+            }
+            return res.status(200).json(projects);
         }
-        return res.status(200).json(projects);
+        else {
+            return res.status(401).json({ message: "you do not have privileges" });
+        }
     }
     catch (error) {
         return res.status(404).json({ message: "projects were not  found", error });
@@ -83,10 +95,16 @@ const getProjectByUserId = (req, res) => __awaiter(void 0, void 0, void 0, funct
 });
 exports.getProjectByUserId = getProjectByUserId;
 const updateProjectToAssigned = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _c;
     try {
-        let { id, userID } = req.params;
-        yield dbInstance.exec('updateProjectStatusToAssigned', { id, userID });
-        return res.status(200).json("task assigned successfully");
+        if (((_c = req.info) === null || _c === void 0 ? void 0 : _c.role) === 'admin') {
+            let { id, userID } = req.params;
+            yield dbInstance.exec('updateProjectStatusToAssigned', { id, userID });
+            return res.status(200).json("task assigned successfully");
+        }
+        else {
+            return res.status(401).json({ message: "you do not have privileges" });
+        }
     }
     catch (error) {
         console.log(error);
@@ -97,8 +115,17 @@ exports.updateProjectToAssigned = updateProjectToAssigned;
 const updateProjectToInProgress = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let { id } = req.params;
-        yield dbInstance.exec('updateProjectStatusToInProgress', { id });
-        return res.status(200).json("task updated to in progress");
+        let project = (yield dbInstance.exec('getProjectById', { id })).recordset[0];
+        console.log(project);
+        // const {projectStatus}=req.body
+        if (!project) {
+            return res.status(404).json({ message: "project not found" });
+        }
+        else {
+            yield dbInstance.exec('updateProjectStatusToInProgress', { id });
+            // return res.status(200).json(project)
+            return res.status(200).json("task updated to in progress");
+        }
     }
     catch (error) {
         console.log(error);
@@ -107,10 +134,10 @@ const updateProjectToInProgress = (req, res) => __awaiter(void 0, void 0, void 0
 });
 exports.updateProjectToInProgress = updateProjectToInProgress;
 const updateProjectToComplete = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
+    var _d;
     try {
         let { id } = req.params;
-        let userID = (_a = req.info) === null || _a === void 0 ? void 0 : _a.id;
+        let userID = (_d = req.info) === null || _d === void 0 ? void 0 : _d.id;
         console.log(userID);
         console.log(userID);
         yield dbInstance.exec('updateProjectStatusToComplete', { id, userID: userID });

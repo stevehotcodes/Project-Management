@@ -10,9 +10,6 @@ export interface ExtendedUserRequest extends Request{
 
 
 
-
-
-
 export const verifyToken=async(req:ExtendedUserRequest,res:Response,next:NextFunction)=>{
     try {
         
@@ -22,8 +19,8 @@ export const verifyToken=async(req:ExtendedUserRequest,res:Response,next:NextFun
         }
         const data=jwt.verify(token ,process.env.SECRET as string) as IdecodedData
         req.info=data
-
-
+        console.log(data)
+        
     } 
     catch (error) {
             return res.json({
@@ -34,3 +31,4 @@ export const verifyToken=async(req:ExtendedUserRequest,res:Response,next:NextFun
     }
     next()
 } 
+

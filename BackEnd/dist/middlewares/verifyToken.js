@@ -24,6 +24,7 @@ const verifyToken = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
         }
         const data = jsonwebtoken_1.default.verify(token, process.env.SECRET);
         req.info = data;
+        console.log(data);
     }
     catch (error) {
         return res.json({

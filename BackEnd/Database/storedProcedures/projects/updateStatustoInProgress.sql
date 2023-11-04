@@ -1,5 +1,5 @@
 CREATE OR ALTER PROCEDURE updateProjectStatusToInProgress(
-    @id VARCHAR(255),
+    @id VARCHAR(255)
 )
 AS 
 BEGIN
