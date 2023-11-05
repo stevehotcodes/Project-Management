@@ -1,9 +1,25 @@
-CREATE OR ALTER PROCEDURE updateProjectStatusToAssigned(
-    @id VARCHAR(255),
+
+CREATE OR ALTER PROCEDURE updateProjectStatusToComplete(
+	@id VARCHAR (255),
+	@userID VARCHAR(255)
 )
-AS 
+AS
+
 BEGIN
-    UPDATE projects 
-    SET projectStatus ='completed' ,isAssigned=0
-    WHERE id=@id AND projectStatus='in progress'
+
+	 BEGIN TRANSACTION
+	 
+	 -- Update the Projects table
+    UPDATE projects
+    SET projectStatus = 'completed'
+    WHERE id = @id AND projectStatus = 'in progress';
+
+    -- Update the Users table
+    UPDATE users
+    SET isAssigned = 0
+    WHERE isAssigned = 1 AND id=@userID
+
+    -- Commit the transaction
+    COMMIT
+
 END

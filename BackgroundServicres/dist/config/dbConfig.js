@@ -22,21 +22,22 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importStar(require("express"));
-const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
-const projectRoutes_1 = __importDefault(require("./routes/projectRoutes"));
-const app = (0, express_1.default)();
-app.use((0, express_1.json)());
-const port = 3000;
-app.use('/user', userRoutes_1.default);
-app.use('/projects', projectRoutes_1.default);
-app.get('/', () => {
-    console.log("perez changes");
-});
-app.listen(port, () => {
-    console.log("hello I am connected to the server................running on this port", port);
-});
+exports.dbConfig = void 0;
+const dotenv = __importStar(require("dotenv"));
+dotenv.config();
+exports.dbConfig = {
+    user: process.env.DB_USER || 'sa',
+    password: process.env.DB_PASSWORD || 'Omosh123',
+    database: process.env.DB_NAME || 'ProjectManagementDB',
+    server: 'localhost',
+    pool: {
+        max: 10,
+        min: 1,
+        idleTimeoutMillis: 3000
+    },
+    options: {
+        encrypt: false,
+        trustCertificate: true
+    }
+};

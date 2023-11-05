@@ -14,7 +14,10 @@ const port =3000
 
 
 app.use('/user',userRouter);
-app.use('/projects',projectRoutes)
+app.use('/projects',projectRoutes);
+app.get('/',()=>{
+    console.log("perez changes")
+})
 
 app.listen(port,()=>{
     console.log("hello I am connected to the server................running on this port", port);
