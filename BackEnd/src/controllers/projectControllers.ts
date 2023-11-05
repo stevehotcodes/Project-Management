@@ -219,3 +219,22 @@ export const getProjectById=async (req:Request,res:Response)=>{
   }
 
 }
+
+export const deleteProject=async (req:Request,res:Response)=>{
+  try {
+
+      let{id}=req.params;
+      let project:IProject[]=(await dbInstance.exec('getProjectById',{id})).recordset;
+      console.log(project)
+      if(!project){return res.status(404).json({message:"project not found"})}
+      else{
+        await dbInstance.exec('deleteAProject',{id})
+        return res.status(200).json({message:`project deleted successfully`});
+      }
+    
+  } catch (error:any) {
+      return res.status(500).json({"error in fetching project details":error.message})
+    
+  }
+
+}

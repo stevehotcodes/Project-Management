@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProjectById = exports.addProjectComment = exports.updateProjectToComplete = exports.updateProjectToInProgress = exports.updateProjectToAssigned = exports.getProjectByUserId = exports.getUnassignedProjects = exports.addNewProject = exports.getAllProjects = void 0;
+exports.deleteProject = exports.getProjectById = exports.addProjectComment = exports.updateProjectToComplete = exports.updateProjectToInProgress = exports.updateProjectToAssigned = exports.getProjectByUserId = exports.getUnassignedProjects = exports.addNewProject = exports.getAllProjects = void 0;
 const databaseConnectionHelper_1 = __importDefault(require("../helpers/databaseConnectionHelper"));
 const uuid_1 = require("uuid");
 const dbInstance = databaseConnectionHelper_1.default.getInstance();
@@ -184,3 +184,21 @@ const getProjectById = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getProjectById = getProjectById;
+const deleteProject = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        let { id } = req.params;
+        let project = (yield dbInstance.exec('getProjectById', { id })).recordset;
+        console.log(project);
+        if (!project) {
+            return res.status(404).json({ message: "project not found" });
+        }
+        else {
+            yield dbInstance.exec('deleteAProject', { id });
+            return res.status(200).json({ message: `project deleted successfully` });
+        }
+    }
+    catch (error) {
+        return res.status(500).json({ "error in fetching project details": error.message });
+    }
+});
+exports.deleteProject = deleteProject;

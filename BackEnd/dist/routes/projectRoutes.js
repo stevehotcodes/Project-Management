@@ -8,6 +8,7 @@ projectRoutes.get('/all', projectControllers_1.getAllProjects);
 projectRoutes.post('/new', verifyToken_1.verifyToken, projectControllers_1.addNewProject);
 projectRoutes.get('/unassigned', verifyToken_1.verifyToken, projectControllers_1.getUnassignedProjects);
 projectRoutes.get('/:userID', verifyToken_1.verifyToken, projectControllers_1.getProjectByUserId);
+projectRoutes.delete('/:id', verifyToken_1.verifyToken, projectControllers_1.deleteProject);
 projectRoutes.get('/one/:id', verifyToken_1.verifyToken, projectControllers_1.getProjectById);
 projectRoutes.patch('/inprogress/:id', projectControllers_1.updateProjectToInProgress);
 projectRoutes.put('/comments/:id', projectControllers_1.addProjectComment);
