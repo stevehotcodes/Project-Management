@@ -5,7 +5,7 @@ import { dbConfig } from '../config/dbConfig'
 import { sendMail } from '../helpers/emailHelpers'
 dotenv.config()
 
-export const welcomeUser = async() =>{
+export const completedUpdate = async() =>{
     const pool = await mssql.connect(dbConfig)
 
     const employees = await (await pool.request().query('SELECT * FROM users WHERE isAssigned = 1 ')).recordset
@@ -14,11 +14,11 @@ export const welcomeUser = async() =>{
     
 
     for (let employee of employees){
-        ejs.renderFile('templates/welcomeUser.ejs', {Name: employee.name}, async(error, data)=>{
+        ejs.renderFile('templates/welcomeUser.ejs', {Name: employee.fullname}, async(error, data)=>{
             let mailOptions = {
                 from: process.env.EMAIL as string,
                 to: employee.email,
-                subject: "Welcome Onboard",
+                subject: "task completed",
                 html: data
             }
 

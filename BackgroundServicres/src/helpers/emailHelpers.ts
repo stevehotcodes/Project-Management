@@ -14,7 +14,7 @@ let configurations: mailConfig = ({
     port: 587,
     requireTLS: true,
     auth: {
-        user: process.env.EMAIL as string,
+        user: process.env.EMAIL as string ,
         pass: process.env.PASSWORD  as string
     }
 })

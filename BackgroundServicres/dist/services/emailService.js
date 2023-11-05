@@ -12,14 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.welcomeUser = void 0;
+exports.completedUpdate = void 0;
 const ejs_1 = __importDefault(require("ejs"));
 const mssql_1 = __importDefault(require("mssql"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const dbConfig_1 = require("../config/dbConfig");
 const emailHelpers_1 = require("../helpers/emailHelpers");
 dotenv_1.default.config();
-const welcomeUser = () => __awaiter(void 0, void 0, void 0, function* () {
+const completedUpdate = () => __awaiter(void 0, void 0, void 0, function* () {
     const pool = yield mssql_1.default.connect(dbConfig_1.dbConfig);
     const employees = yield (yield pool.request().query('SELECT * FROM users WHERE isAssigned = 1 ')).recordset;
     console.log(employees);
@@ -28,7 +28,7 @@ const welcomeUser = () => __awaiter(void 0, void 0, void 0, function* () {
             let mailOptions = {
                 from: process.env.EMAIL,
                 to: employee.email,
-                subject: "Welcome Onboard",
+                subject: "task completed",
                 html: data
             };
             try {
@@ -43,4 +43,4 @@ const welcomeUser = () => __awaiter(void 0, void 0, void 0, function* () {
         }));
     }
 });
-exports.welcomeUser = welcomeUser;
+exports.completedUpdate = completedUpdate;
