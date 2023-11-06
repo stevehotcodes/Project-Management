@@ -78,10 +78,10 @@ signin_form.addEventListener("submit",(event)=>{
 
                 if(data['info'].role === 'employee'){
                     localStorage.setItem('userEmail', data['info'].email!)
-                    // location.href = 'employee.html'
+                    location.href = 'Project-Management/user/user.html'
                 }else if(data['info'].role === 'admin'){
                     localStorage.setItem('userEmail', data['info'].email!)
-                    // location.href = 'admin.html'
+                    location.href = '../Frontend/admin/index.html'
                 }
             })
         }

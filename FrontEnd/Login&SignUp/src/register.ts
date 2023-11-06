@@ -52,7 +52,7 @@ form_el.addEventListener('submit',(event)=>{
             })
 
             const redirectToLogin=()=>{
-                location.href='index.html'
+                location.href='login.html'
             }
         }
 
