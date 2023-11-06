@@ -7,7 +7,43 @@
     <title>Project Nerdies</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/b7cf077f29.js" crossorigin="anonymous"></script>
+    <script>
+        function authenticateUser() {
+            // Get the entered username and password
+            var username = document.querySelector('input[type="text"]').value;
+            var password = document.querySelector('input[type="password"]').value;
+    
+            // Define admin credentials (you can change these)
+            var adminUsername = 'Jennifer';
+            var adminPassword = '1234567890';
+    
+            if (username === adminUsername && password === adminPassword) {
+                // Redirect to the admin dashboard
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                // Replace this with your regular user authentication logic
+                // If successful, redirect to the user dashboard
+                // Otherwise, display an error message
+                if (validateUser(username, password)) {
+                    window.location.href = 'user-dashboard.html';
+                } else {
+                    alert('Invalid username or password. Please try again.');
+                }
+            }
+        }
+    
+        // Function to validate regular user credentials (replace with your authentication logic)
+        function validateUser(username, password) {
+            // Replace with your user authentication logic
+            // Return true if the credentials are valid, or false otherwise
+            return (username === 'Stephen' && password === '0987654321');
+        }
+    </script>
+    
+    
 </head>
+
+
 <body>
     <div class="wrapper">
         <div class="form-holder">
@@ -21,9 +57,15 @@
                     <i class="fa-solid fa-key"></i>
                     <input type="password" placeholder="Password">
                 </div>
+
+                <!-- <div class="form-group">
+                    <button type="button" onclick="redirectToDashboard()">Sign in</button>
+                </div> -->
                 <div class="form-group">
-                   <button type="submit">Sign in</button> 
+                    <button type="button" onclick="authenticateUser()">Sign in</button>
                 </div>
+                
+                
                 <div class="form-group">
                     <a href="forgot-pass.html">Forgot Password?</a>
                     <a href="signup.html" class="right-link">Sign Up</a>

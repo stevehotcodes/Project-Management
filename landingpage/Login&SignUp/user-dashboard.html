@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>User Nerdie</title>
+</head>
+
+<body>
+    <div class="overlay"></div>
+    <div class="header">
+        <div class="title">
+            <h1>Task Master</h1>
+        </div>
+        <div class="user-options">
+            <a href="#"><i class="fa fa-search fa-2x" aria-hidden="true"></i>
+                <a href="#"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
+            </a>
+        </div>
+    </div>
+    <div class="navbar">
+        <a href="#">Projects</a>
+        <a href="./completeprojects.html">Completed</a>
+    </div>
+    <div class="project-section">
+        <div class="project">
+            <div class="project-title">
+                <h2>Project Title</h2>
+                <p>Short Description</p>
+            </div>
+            <div class="due-date">
+                <p class="due">Due Date:</p>
+                <p><span>DD/MM/YYYY</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="heading">
+                <h3>To-Do</h3>
+                <!-- <button><i class="fa fa-plus fa-2x" aria-hidden="true"></i></button> -->
+            </div>
+            <div class="content">
+                <h3 class="task-name">Task Name</h3>
+                <p class="feature">Feature</p>
+                <p class="description">Description</p>
+                <p class="due-date">Due Date: <span class="date">DD/MM/YYYY</span></p>
+                <div class="button-container">
+                    <button onclick="moveInProgress(this)">Start Project</button>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="heading">
+                <h3>In-Progress</h3>
+                <button><i class="fa fa-plus fa-2x" aria-hidden="true"></i></button>
+
+            </div>
+            <div class="content">
+                <h3 class="task-name">Task Name</h3>
+                <p class="feature">Feature</p>
+                <p class="description">Description</p>
+                <p class="due-date">Due Date: <span class="date">DD/MM/YYYY</span></p>
+                <!-- <button onclick="moveToDone(this)">Submit Project</button> -->
+
+            </div>
+        </div>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <h2>Add Comments</h2>
+                <form id="commentForm">
+                    <textarea id="commentText" placeholder="Enter your comments here"></textarea>
+                    <button type="submit">OK</button>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="heading">
+                <h3>Done</h3>
+                <button><i class="fa fa-plus fa-2x" aria-hidden="true"></i></button>
+            </div>
+            <div class="content">
+                <h3 class="task-name">Task Name</h3>
+                <p class="feature">Feature</p>
+                <p class="description">Description</p>
+                <p class="due-date">Due Date: <span class="date">DD/MM/YYYY</span></p>
+                <div class="button-container">
+                <button onclick="submitProject(this)">Submit</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="./user.js"></script>
+</body>
+
+</html>
