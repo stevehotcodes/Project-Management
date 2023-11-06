@@ -22,7 +22,7 @@ BEGIN
 	 -- Update the Projects table
     UPDATE projects
     SET projectStatus = 'completed'
-    WHERE id = @id AND projectStatus = 'in porgress';
+    WHERE id = @id AND projectStatus = 'in progress';
 
     -- Update the Users table
     UPDATE Users
