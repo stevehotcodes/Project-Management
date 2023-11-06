@@ -5,10 +5,12 @@ import sql from "mssql"
 import { dbConnectService } from "./services/dbConnectionService";
 import userRouter from "./routes/userRoutes";
 import projectRoutes from "./routes/projectRoutes";
-
+import cors from 'cors'
 
 const app = Express();
+app.use(cors())
 app.use(json())
+
 const port =3000
 
 

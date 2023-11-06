@@ -1,8 +1,7 @@
-CREATE OR ALTER PROCEDURE getUserEmail(
-    @email VARCHAR (255),
-    @password VARCHAR (255)
+CREATE OR ALTER PROCEDURE getUserById(
+  @id VARCHAR (255)
 )
 AS
 BEGIN
-    SELECT * FROM users WHERE email=@email 
+    SELECT * FROM users WHERE id=@id
 END

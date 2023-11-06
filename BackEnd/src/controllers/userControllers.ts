@@ -3,7 +3,7 @@ import { dbConnectService } from "../services/dbConnectionService";
 import {v4 as uid} from 'uuid'
 import bcrypt from 'bcrypt'
 import DatabaseHelper from "../helpers/databaseConnectionHelper";
-import { IUnassignedUser, IUser, IuserPayLoad } from "../Types";
+import { ExtendedUserRequest, IUnassignedUser, IUser, IuserPayLoad } from "../Types";
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 dotenv.config({path:"./env"})
@@ -24,13 +24,13 @@ function filterUserInfo(users:IUser[]) {
 export const registerNewUser=async (req:Request,res:Response)=>{
     try {
         let id=uid()
-        let {fullName,email, password}=req.body
+        let {fullname,email, password}=req.body
         password= await bcrypt.hash(password,10);
 
     
 
         // let pool=await dbConnectService()
-        await db.exec('addUser', {id,fullName, email, password})
+        await db.exec('addUser', {id,fullname, email, password})
         // pool?.connected? console.log("Db connected successfully"):""
         return res.status(201).json({message:`User <${email}> has been registered successfully. Your ID is ${id}`})
         
@@ -54,10 +54,13 @@ export const  getUserById=async (req:Request,res:Response)=>{
     try {
         let {id}=req.params;
 
-        
-        
+        let user:IUser=(await db.exec('getUserById',{id})).recordset[0];
+        if(!user){return res.status(404).json("user not found")};
+
+        return res.status(200).json(user)
+
     } catch (error) {
-        
+        return res.status(500).json({message:"error in fetching user data",error})
     }
 }
 
@@ -69,11 +72,13 @@ export const loginUser=async (req:Request,res:Response)=>{
       
       //fetch data form the 
       let user:IUser=(await db.exec('getUserEmail',{email,password})).recordset[0];
-        
+        console.log(user)
+        if(!user){return res.status(404).json({message:"user with that email does not exist or incorrect email or password "})}
       //compare with user input 
       if (user.email==email){
         
-        const passwordDb=await bcrypt.compare(password,user.password)
+        const passwordDb=await bcrypt.compare(password as string,user.password as string)
+        console.log(passwordDb,user.email,password,user.password)
         if(!passwordDb){
             return res.status(401).json("Incorrect password")
         }
@@ -88,6 +93,7 @@ export const loginUser=async (req:Request,res:Response)=>{
         })
 
       }
+
       else{
         console.log("email not found")
         return res.status(404).json({message :"email not found"})
@@ -112,3 +118,11 @@ export const loginUser=async (req:Request,res:Response)=>{
             return res.status(500).json({"error in fetching unassigned users":error.message})
         }
   }
+
+  export const checkUserDetails = (req:ExtendedUserRequest, res:Response)=>{
+        if(req.info){
+        return res.json({
+            info: req.info
+        })
+    }
+}
