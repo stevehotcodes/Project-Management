@@ -3,19 +3,36 @@
     margin: 0;
     background-color: #F4F2F2;
     color: #0E2A47;
-}
+
+ }
+ 
+/* changes */
+      
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    background-color: #333;
+    color: white;
 }
 
 .title {
     margin-left: 20px;
-    color: #0E2A47;
+    color: white
+    /* margin; 0; */
 }
+
+/* .header .title .h1 {
+    align-items: center;
+} */
+
+.user-options a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+  }
 
 .user-options {
     margin-right: 20px;
@@ -23,7 +40,7 @@
 }
 
 .navbar {
-    background-color: white;
+    /* background-color: white; */
     display: flex;
     justify-content: center;
     justify-content: flex-start;
@@ -32,15 +49,23 @@
     width: 70%;
     margin: 0 auto;
     border-radius: 20px;
+
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
 }
 
 .navbar a {
-    margin: 0 10px;
+    /* margin: 0 10px; */
     text-decoration: none;
     color: #333;  
     font-size: 18px; 
     font-weight: 700; 
     transition: all 0.3s; 
+
+    color: white;
+    margin: 0 20px;
 }
 .navbar a:hover {
     color: #ff0000; 
@@ -51,6 +76,8 @@
     display: flex;
     justify-content: center;
     align-content: center;
+
+    /* margin: 20px; */
 }
 
 .project {
@@ -58,6 +85,12 @@
     width: 70%;
     display: flex;
     justify-content: space-between;
+
+    /* background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; */
 }
 
 .project-title {
@@ -72,6 +105,8 @@
 .due-date  {
     flex-basis: 50%;
     line-height: 1.8;
+
+    font-weight: bold;
 }
 
 .due-date .due {
@@ -98,11 +133,16 @@
     width: 90%;
     display: flex;
     justify-content: space-between;
+
+    align-items: center;
 }
 .heading > button {
  border-radius: 80%;
  height: 5vh;
  margin: 10px;
+
+ text-align: center;
+ margin-top: 10px;
 
 }
 .heading h3{
@@ -115,7 +155,13 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+
+
+    background-color: #fff;
+    /* padding: 20px; */
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
 }
 
 .card h3 {
@@ -171,17 +217,28 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    /* background-color: rgba(0, 0, 0, 0.7); */
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    /* margin: 15% auto; */
     padding: 20px;
     border: 1px solid #888;
-    width: 50%;
+    /* width: 50%; */
     text-align: center;
     position: relative;
+
+
+    width: 70%;
+    max-width: 400px;
+    margin: 100px auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .close {
@@ -190,6 +247,9 @@
     right: 0;
     font-size: 24px;
     cursor: pointer;
+
+
+    padding: 10px;
 }
 
 button#openModal {
