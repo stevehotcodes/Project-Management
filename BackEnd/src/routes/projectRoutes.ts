@@ -1,12 +1,13 @@
 import { Router } from "express";
-import { addNewProject, addProjectComment, deleteProject, getAllProjects, getProjectById, getProjectByUserId, getUnassignedProjects, updateProjectToAssigned, updateProjectToComplete, updateProjectToInProgress } from "../controllers/projectControllers";
+import { addNewProject, addProjectComment, deleteProject, getAllProjects, getCompletedProjects, getProjectById, getProjectByUserId, getUnassignedProjects, updateProjectToAssigned, updateProjectToComplete, updateProjectToInProgress } from "../controllers/projectControllers";
 import { verifyToken } from "../middlewares/verifyToken";
 
 const projectRoutes=Router();
 
 
 projectRoutes.get('/all',getAllProjects)
-projectRoutes.post('/new',verifyToken,addNewProject)
+projectRoutes.get('/completed',getCompletedProjects)
+projectRoutes.post('/new',addNewProject)
 projectRoutes.get('/unassigned',verifyToken,getUnassignedProjects);
 projectRoutes.get('/:userID',verifyToken,getProjectByUserId);
 projectRoutes.delete('/:id', verifyToken,deleteProject)

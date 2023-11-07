@@ -12,13 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProject = exports.getProjectById = exports.addProjectComment = exports.updateProjectToComplete = exports.updateProjectToInProgress = exports.updateProjectToAssigned = exports.getProjectByUserId = exports.getUnassignedProjects = exports.addNewProject = exports.getAllProjects = void 0;
+exports.getCompletedProjects = exports.deleteProject = exports.getProjectById = exports.addProjectComment = exports.updateProjectToComplete = exports.updateProjectToInProgress = exports.updateProjectToAssigned = exports.getProjectByUserId = exports.getUnassignedProjects = exports.addNewProject = exports.getAllProjects = void 0;
 const databaseConnectionHelper_1 = __importDefault(require("../helpers/databaseConnectionHelper"));
 const uuid_1 = require("uuid");
 const dbInstance = databaseConnectionHelper_1.default.getInstance();
 const getAllProjects = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let projects = yield dbInstance.exec('getAllProjects');
+        let projects = yield (yield dbInstance.exec('getAllProjects')).recordset;
         return res.status(200).json(projects);
     }
     catch (error) {
@@ -27,36 +27,32 @@ const getAllProjects = (req, res) => __awaiter(void 0, void 0, void 0, function*
 });
 exports.getAllProjects = getAllProjects;
 const addNewProject = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     try {
-        if (((_a = req.info) === null || _a === void 0 ? void 0 : _a.role) === 'admin') {
-            let id = (0, uuid_1.v4)();
-            let { projectTitle, projectDescription, projectDueDate } = req.body;
-            const parts = projectDueDate.split('/');
-            if (parts.length === 3) {
-                projectDueDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
-            }
-            else {
-                return res.status(400).json({ message: "Invalid date format" });
-            }
-            let parsedDate = new Date(projectDueDate);
-            projectDueDate = parsedDate;
-            if (isNaN(projectDueDate)) {
-                return res.status(400).json({ message: "Invalid date format" });
-            }
-            console.log(parsedDate);
-            let result = yield dbInstance.exec('addNewProject', {
-                id,
-                projectTitle,
-                projectDescription,
-                projectDueDate,
-            });
-            console.log(result);
-            return res.status(201).json({ message: `${projectTitle} created successfully` });
-        }
-        else {
-            return res.status(401).json({ message: "you do not have privileges" });
-        }
+        let id = (0, uuid_1.v4)();
+        let { projectTitle, projectDescription, projectDueDate } = req.body;
+        // const parts = projectDueDate.split('/');
+        // if (parts.length === 3) {
+        //   projectDueDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+        // } else {
+        //   return res.status(400).json({ message: "Invalid date format" });
+        // }
+        // let parsedDate = new Date(projectDueDate);
+        // projectDueDate=parsedDate
+        // if (isNaN(projectDueDate)) {
+        //   return res.status(400).json({ message: "Invalid date format" });
+        // }
+        // console.log(parsedDate);
+        let result = yield dbInstance.exec('addNewProject', {
+            id,
+            projectTitle,
+            projectDescription,
+            projectDueDate,
+        });
+        console.log(result);
+        return res.status(201).json({ message: `${projectTitle} created successfully` });
+        // else{
+        //   return res.status(401).json({message:"you do not have privileges"})
+        // }
     }
     catch (error) {
         return res.status(500).json({ message: error.message });
@@ -65,9 +61,9 @@ const addNewProject = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.addNewProject = addNewProject;
 //fetch project by status 
 const getUnassignedProjects = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _b;
+    var _a;
     try {
-        if (((_b = req.info) === null || _b === void 0 ? void 0 : _b.role) === 'admin') {
+        if (((_a = req.info) === null || _a === void 0 ? void 0 : _a.role) === 'admin') {
             let projects = (yield dbInstance.exec('getUnassignedProjects')).recordset;
             if (!projects) {
                 return res.status(404).json({ message: "no projects founnd" });
@@ -95,9 +91,9 @@ const getProjectByUserId = (req, res) => __awaiter(void 0, void 0, void 0, funct
 });
 exports.getProjectByUserId = getProjectByUserId;
 const updateProjectToAssigned = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _c;
+    var _b;
     try {
-        if (((_c = req.info) === null || _c === void 0 ? void 0 : _c.role) === 'admin') {
+        if (((_b = req.info) === null || _b === void 0 ? void 0 : _b.role) === 'admin') {
             let { id, userID } = req.params;
             yield dbInstance.exec('updateProjectStatusToAssigned', { id, userID });
             return res.status(200).json("task assigned successfully");
@@ -134,10 +130,10 @@ const updateProjectToInProgress = (req, res) => __awaiter(void 0, void 0, void 0
 });
 exports.updateProjectToInProgress = updateProjectToInProgress;
 const updateProjectToComplete = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _d;
+    var _c;
     try {
         let { id } = req.params;
-        let userID = (_d = req.info) === null || _d === void 0 ? void 0 : _d.id;
+        let userID = (_c = req.info) === null || _c === void 0 ? void 0 : _c.id;
         console.log(userID);
         console.log(userID);
         yield dbInstance.exec('updateProjectStatusToComplete', { id, userID: userID });
@@ -202,3 +198,19 @@ const deleteProject = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.deleteProject = deleteProject;
+const getCompletedProjects = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        let projects = (yield dbInstance.exec('getCompletedProjects')).recordset;
+        console.log(projects);
+        if (!projects) {
+            return res.status(404).json({ message: "projects not found" });
+        }
+        else {
+            return res.status(200).json(projects);
+        }
+    }
+    catch (error) {
+        return res.status(500).json({ "error in fetching project details": error.message });
+    }
+});
+exports.getCompletedProjects = getCompletedProjects;

@@ -172,13 +172,14 @@ svg{
 }
 .project-cards-wrapper{
     display: flex;
+    /* flex-direction: column; */
     flex-wrap:wrap;
     width:100%;
     justify-content: center;
 }
 .project-card{
     width:24.375rem;
-    height:12.375rem;
+    height:15.375rem;
     display: flex;
     flex-direction: column;
     /* box-shadow: 5px 5px  10px gray; */
@@ -209,7 +210,7 @@ footer{
     align-items: center;
 }
 .myModal {
-    display: none;
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
@@ -273,4 +274,9 @@ input{
     right: 0;
     padding: 10px;
     cursor: pointer;
+}
+.main-container{
+    /* flex:1; */
+    height:150vh;
+    flex-grow:1
 }

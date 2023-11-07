@@ -27,29 +27,14 @@
 
         <div class="middle-nav-bar-add-button-wrapper">
             <div class="middle-nav-bar">
-                <div class="all-projects"  ><a  target="self" href="./index.html">All Project</a></div>
+                <div class="all-projects"  ><a  target="self" href="./admin-dashboard.html">All Project</a></div>
                 <div class="assign active" ><a  target="self" href="#">Assign</a></div>
                 <div class="completed "><a   target="self" href="./completed.html">Completed </a></div>
                 <div class="users" ><a  target="self" href="./userlist.html">Users</a></div>
                 <div class="users"><a   target="self" href="./due.html">Due</a></div>
+                <div class="users"><a   target="self" href="./addproject.html">Due</a></div>
             </div>
-            <div class="button-wrapper" title="add-task" class="openModalBtn">
-                <svg class="add-btn" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm80 224h-64v64a16 16 0 01-32 0v-64h-64a16 16 0 010-32h64v-64a16 16 0 0132 0v64h64a16 16 0 010 32z"/></svg>
-                <div class="myModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" id="openModalBtn">&times;</span>
-                        <span class="close" id="closeModalBtn">&times;</span>
-                        <h2>Add New Project</h2>
-                        <form class="modal-form">
-                            <!-- Your form elements go here -->
-                            <input type="text" name="title" placeholder="Project Title" class="project-title">
-                            <input type="text" name="description" placeholder="Project Description" class="project-description">
-                            <input type="date" name="due_date" placeholder="due-date" class="project-due-date-input">
-                            <button type="submit" class="create-new-project-btn">Create Project</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+          
          
         </div>
 
@@ -151,4 +136,5 @@
 
 </div>
 <script src="./dist/admin.js"></script>
+<script src="./dist/addProject.js"></script>
 </body>
