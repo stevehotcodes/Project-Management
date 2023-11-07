@@ -8,5 +8,5 @@ userRouter.get("/checkuserdetails", verifyToken_1.verifyToken, userControllers_1
 userRouter.post('/new', userControllers_1.registerNewUser);
 userRouter.get('/unassigned', userControllers_1.getUnassignedUsers);
 userRouter.get('/all', userControllers_1.getAllUser);
-userRouter.patch('/login', userControllers_1.loginUser);
+userRouter.post('/login', userControllers_1.loginUser);
 exports.default = userRouter;

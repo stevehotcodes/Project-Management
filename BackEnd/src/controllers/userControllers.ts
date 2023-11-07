@@ -72,7 +72,7 @@ export const loginUser=async (req:Request,res:Response)=>{
       
       //fetch data form the 
       let user:IUser=(await db.exec('getUserEmail',{email,password})).recordset[0];
-        console.log(user)
+        console.log("this is user from db", user)
         if(!user){return res.status(404).json({message:"user with that email does not exist or incorrect email or password "})}
       //compare with user input 
       if (user.email==email){

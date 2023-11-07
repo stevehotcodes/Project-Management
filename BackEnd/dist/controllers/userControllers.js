@@ -73,7 +73,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         let { email, password } = req.body;
         //fetch data form the 
         let user = (yield db.exec('getUserEmail', { email, password })).recordset[0];
-        console.log(user);
+        console.log("this is user from db", user);
         if (!user) {
             return res.status(404).json({ message: "user with that email does not exist or incorrect email or password " });
         }
