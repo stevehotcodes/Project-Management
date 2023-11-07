@@ -56,21 +56,13 @@ const getCompletedProjects =async()=>{
                 <div style="display=flex" class="projectStatus"><span style="color:red">Status:</span><div>${el.projectStatus}</div></div>           
              </div>
                     
-            `      
-
-
-         
-                      
-            
+            `         
          })
                 
     } catch (error) {
         console.log("error in fetching",error)
     }
 }
-
-
-
 
 
 
