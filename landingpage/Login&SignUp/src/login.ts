@@ -78,9 +78,9 @@ async function redirectToDashboard() {
             const data = await userResponse.json();
             console.log(data['info']);
 
-            if (data.info.role === 'employee') {
+            if (data.info.role === 'employees') {
                 localStorage.setItem('userEmail', data.info.email);
-                location.href = './user.html';
+                location.href= 'user-dashboard.html';
             } else if (data.info.role ==='admin') {
                 localStorage.setItem('userEmail', data.info.email);
                 location.href = './admin-dashboard.html';
