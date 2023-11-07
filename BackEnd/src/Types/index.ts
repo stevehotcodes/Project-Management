@@ -40,6 +40,7 @@ export interface IProject{
     projectStatus:'unassigned'| 'assigned' |'in progress' |'completed'
     projectComments:string,
     userID:string
+    fullname:string
 
 }
 export interface IUnassignedUser{

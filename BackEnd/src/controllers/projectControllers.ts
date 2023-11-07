@@ -11,7 +11,7 @@ const dbInstance= DatabaseHelper.getInstance()
 export const getAllProjects=async(req:Request,res:Response)=>{
 
   try {
-    let projects=await dbInstance.exec('getAllProjects');
+    let projects:IProject[]=await(await dbInstance.exec('getAllProjects')).recordset;
     return res.status(200).json(projects); 
     
   } catch (error) {
@@ -22,29 +22,30 @@ export const getAllProjects=async(req:Request,res:Response)=>{
 
 export const addNewProject = async (req:ExtendedUserRequest, res:Response) => {
     try {
-      if(req.info?.role==='admin'){
+    
 
         let id = uid();
         let { projectTitle, projectDescription, projectDueDate } = req.body;
     
        
-        const parts = projectDueDate.split('/');
-        if (parts.length === 3) {
-          projectDueDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
-        } else {
-          return res.status(400).json({ message: "Invalid date format" });
-        }
+        // const parts = projectDueDate.split('/');
+        // if (parts.length === 3) {
+        //   projectDueDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+
+        // } else {
+        //   return res.status(400).json({ message: "Invalid date format" });
+        // }
     
         
-        let parsedDate = new Date(projectDueDate);
-        projectDueDate=parsedDate
+        // let parsedDate = new Date(projectDueDate);
+        // projectDueDate=parsedDate
     
       
-        if (isNaN(projectDueDate)) {
-          return res.status(400).json({ message: "Invalid date format" });
-        }
+        // if (isNaN(projectDueDate)) {
+        //   return res.status(400).json({ message: "Invalid date format" });
+        // }
     
-        console.log(parsedDate);
+        // console.log(parsedDate);
     
         let result = await dbInstance.exec('addNewProject', {
             id,
@@ -55,10 +56,10 @@ export const addNewProject = async (req:ExtendedUserRequest, res:Response) => {
         console.log(result);
         return res.status(201).json({ message: `${projectTitle} created successfully` });
 
-      }
-      else{
-        return res.status(401).json({message:"you do not have privileges"})
-      }
+      
+      // else{
+      //   return res.status(401).json({message:"you do not have privileges"})
+      // }
    
     } catch (error:any) {
       return res.status(500).json({ message: error.message });
@@ -230,6 +231,24 @@ export const deleteProject=async (req:Request,res:Response)=>{
       else{
         await dbInstance.exec('deleteAProject',{id})
         return res.status(200).json({message:`project deleted successfully`});
+      }
+    
+  } catch (error:any) {
+      return res.status(500).json({"error in fetching project details":error.message})
+    
+  }
+
+}
+
+
+export const getCompletedProjects=async (req:Request,res:Response)=>{
+  try {
+
+      let projects:IProject[]=(await dbInstance.exec('getCompletedProjects')).recordset;
+      console.log(projects)
+      if(!projects){return res.status(404).json({message:"projects not found"})}
+      else{
+        return res.status(200).json(projects)
       }
     
   } catch (error:any) {

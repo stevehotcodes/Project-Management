@@ -9,7 +9,7 @@ userRouter.get("/checkuserdetails", verifyToken,checkUserDetails)
 userRouter.post('/new',registerNewUser);
 userRouter.get('/unassigned',getUnassignedUsers)
 userRouter.get('/all',getAllUser);
-userRouter.patch('/login',loginUser);
+userRouter.post('/login',loginUser);
 
 
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Add project</title>
 </head>
 <body>
     <div class="page-wrapper">
@@ -27,31 +27,38 @@
 
         <div class="middle-nav-bar-add-button-wrapper">
             <div class="middle-nav-bar">
-                <div class="all-projects" >
-                    <a target ="self" href="./admin-dashboard.html">All Project</a></div>
-                <div class="assign " >
-                    <a target ="self" href="./assign.html">Assign</a></div>
-                <div class="completed active ">
-                    <a  target ="self" href="#">Completed </a>
-                </div>
-                <div class="users" >
-                    <a target ="self" href="./userlist.html">Users</a>
-                </div>
-                <div class="users"><a  target ="self" href="./due.html">Due</a></div>         
+                <div class="all-projects"  ><a href="./admin-dashboard.html">All Project</a></div>
+                <div class="assign " ><a href="./assign.html">Assign</a></div>
+                <div class="completed "><a  href="./completed.html">Completed </a></div>
+                <div class="users active" ><a href="#">Users</a></div>
+                <div class="users"><a  href="./due.html">Due</a></div>
+                <div class="users"><a href="./addproject.html">Add project</a></div>
             </div>
-          
+         
          
         </div>
 
         <div class="main-container">
-            <div class="page-title">Completed</div>
-            <div class="project-cards-wrapper">
-            
-
-
+            <div class="page-title">Add project</div>
+            <div class="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="openModalBtn">&times;</span>
+                    <span class="close" id="closeModalBtn">&times;</span>
+                    <h2>Add New Project</h2>
+                    <form class="modal-form">
+                        
+                        <input type="text" name="title" placeholder="Project Title" class="project-title">
+                        <input type="text" name="description" placeholder="Project Description" class="project-description">
+                        <input type="date" name="due_date" placeholder="due date" class="project-due-date-input">
+                        
+                        <button type="submit" class="create-new-project-btn">Create Project</button>
+                    </form>
+                </div>
+            </div>      
+             
 
             </div>
-        </div>
+    
         <footer>
             <p>Project Nerdies</p>
             <p>2023</p>
@@ -64,12 +71,9 @@
             </div>
         </footer>
 
- 
+ <script src="./dist/admin.js"></script>
+ <script src="./dist/addProject.js"></script>
 
 
 </div>
-<script src="./dist/admin.js"></script>
-<!-- <script src="./dist/getAllProject.js"></script>
- -->
- <script src="./dist/completed-admin.js"></script>
 </body>
