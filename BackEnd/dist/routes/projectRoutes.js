@@ -7,7 +7,7 @@ const projectRoutes = (0, express_1.Router)();
 projectRoutes.get('/all', projectControllers_1.getAllProjects);
 projectRoutes.get('/completed', projectControllers_1.getCompletedProjects);
 projectRoutes.post('/new', projectControllers_1.addNewProject);
-projectRoutes.get('/unassigned', verifyToken_1.verifyToken, projectControllers_1.getUnassignedProjects);
+projectRoutes.get('/unassigned', projectControllers_1.getUnassignedProjects);
 projectRoutes.get('/:userID', verifyToken_1.verifyToken, projectControllers_1.getProjectByUserId);
 projectRoutes.delete('/:id', verifyToken_1.verifyToken, projectControllers_1.deleteProject);
 projectRoutes.get('/one/:id', verifyToken_1.verifyToken, projectControllers_1.getProjectById);

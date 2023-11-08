@@ -5,7 +5,7 @@ export interface IUser{
     password:string
     role :string,
     dateRegistered:string
-    isDeleted: 0 | 1
+    
 }
 
 export interface ILoginUser extends Request{

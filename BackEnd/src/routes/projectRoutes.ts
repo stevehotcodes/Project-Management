@@ -8,7 +8,7 @@ const projectRoutes=Router();
 projectRoutes.get('/all',getAllProjects)
 projectRoutes.get('/completed',getCompletedProjects)
 projectRoutes.post('/new',addNewProject)
-projectRoutes.get('/unassigned',verifyToken,getUnassignedProjects);
+projectRoutes.get('/unassigned',getUnassignedProjects);
 projectRoutes.get('/:userID',verifyToken,getProjectByUserId);
 projectRoutes.delete('/:id', verifyToken,deleteProject)
 projectRoutes.get('/one/:id',verifyToken,getProjectById)

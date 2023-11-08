@@ -61,18 +61,15 @@ const addNewProject = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.addNewProject = addNewProject;
 //fetch project by status 
 const getUnassignedProjects = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     try {
-        if (((_a = req.info) === null || _a === void 0 ? void 0 : _a.role) === 'admin') {
-            let projects = (yield dbInstance.exec('getUnassignedProjects')).recordset;
-            if (!projects) {
-                return res.status(404).json({ message: "no projects founnd" });
-            }
-            return res.status(200).json(projects);
+        let projects = (yield dbInstance.exec('getUnassignedProjects')).recordset;
+        if (!projects) {
+            return res.status(404).json({ message: "no projects founnd" });
         }
-        else {
-            return res.status(401).json({ message: "you do not have privileges" });
-        }
+        return res.status(200).json(projects);
+        // else{
+        //   return res.status(401).json({message:"you do not have privileges"})
+        // }   
     }
     catch (error) {
         return res.status(404).json({ message: "projects were not  found", error });
@@ -91,9 +88,9 @@ const getProjectByUserId = (req, res) => __awaiter(void 0, void 0, void 0, funct
 });
 exports.getProjectByUserId = getProjectByUserId;
 const updateProjectToAssigned = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _b;
+    var _a;
     try {
-        if (((_b = req.info) === null || _b === void 0 ? void 0 : _b.role) === 'admin') {
+        if (((_a = req.info) === null || _a === void 0 ? void 0 : _a.role) === 'admin') {
             let { id, userID } = req.params;
             yield dbInstance.exec('updateProjectStatusToAssigned', { id, userID });
             return res.status(200).json("task assigned successfully");
@@ -130,10 +127,10 @@ const updateProjectToInProgress = (req, res) => __awaiter(void 0, void 0, void 0
 });
 exports.updateProjectToInProgress = updateProjectToInProgress;
 const updateProjectToComplete = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _c;
+    var _b;
     try {
         let { id } = req.params;
-        let userID = (_c = req.info) === null || _c === void 0 ? void 0 : _c.id;
+        let userID = (_b = req.info) === null || _b === void 0 ? void 0 : _b.id;
         console.log(userID);
         console.log(userID);
         yield dbInstance.exec('updateProjectStatusToComplete', { id, userID: userID });

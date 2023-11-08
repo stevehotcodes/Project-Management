@@ -71,14 +71,14 @@ export const addNewProject = async (req:ExtendedUserRequest, res:Response) => {
 export const getUnassignedProjects=async(req:ExtendedUserRequest,res:Response)=>{
 
     try {
-      if(req.info?.role==='admin'){
-          let projects=(await dbInstance.exec('getUnassignedProjects')).recordset;
+      
+          let projects:IProject[]=(await dbInstance.exec('getUnassignedProjects')).recordset;
         if(!projects){return res.status(404).json({message:"no projects founnd"})}
         return res.status(200).json(projects); 
-      }
-      else{
-        return res.status(401).json({message:"you do not have privileges"})
-      }   
+      
+      // else{
+      //   return res.status(401).json({message:"you do not have privileges"})
+      // }   
 
     } catch (error) {
       return res.status(404).json({message:"projects were not  found",error})
